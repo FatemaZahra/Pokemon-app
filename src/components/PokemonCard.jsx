@@ -1,10 +1,10 @@
 function PokemonCard({ pokemonInfo }) {
   return (
     <section id="card">
-      <h2>
+      <h2 className="h2">
         {pokemonInfo.name} #{pokemonInfo.pokedexNumber}
       </h2>
-      <img src={pokemonInfo.imageUrl} alt={pokemonInfo.name} />
+      <img id="card_img" src={pokemonInfo.imageUrl} alt={pokemonInfo.name} />
       <p>
         {pokemonInfo.height * 10}cm {pokemonInfo.weight / 100}g
       </p>

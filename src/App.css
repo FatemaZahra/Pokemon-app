@@ -1,11 +1,12 @@
 * {
   box-sizing: border-box;
+  font-family: "Poppins", sans-serif;
 }
 
 .App {
   text-align: center;
 
-  background: #ffcb05;
+  background: #73bae9;
   border: 18px groove #1c6ea4;
   border-radius: 0px 40px 0px 40px;
 }
@@ -28,19 +29,40 @@
 }
 
 #card {
+  background-color: #ffcb05;
   border: 18px groove #1c6ea4;
   font-family: Verdana, Geneva, Tahoma, sans-serif;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
   margin: 12px;
   display: inline-block;
+  width: 350px;
 }
 
 #button {
   border-color: #ffcb05;
-  font-size: 12em;
-  color: black;
+  background-color: rgb(218, 236, 252);
+  display: inline;
+  font-family: "pokemon solid";
+  color: #06385a;
   border-radius: 30px;
   padding: 9px;
-  font-size: 9px;
+  font-size: 18px;
   margin: 5px;
+  transition-duration: 0.4s;
+}
+#button:hover {
+  background-color: #417ba1;
+}
+#button:active {
+  background-color: #ffcb05;
+  box-shadow: 0 5px red;
+  transform: translateY(4px);
+}
+.h2 {
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+#card_img {
+  display: in;
+  position: relative;
+  margin: 20px auto;
 }
