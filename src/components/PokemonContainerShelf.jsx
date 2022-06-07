@@ -3,47 +3,60 @@ import SearchBar from "./SearchBar";
 import PokemonCard from "./PokemonCard";
 
 const PokemonContainerShelf = () => {
-  const [pokemonInfo, setPokemonInfo] = useState([]);
+  const [pokemonInfo, setPokemonInfo] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
-  const [searchResult, setSearchResult] = useState("ditto");
+  const [searchResult, setSearchResult] = useState("");
+  const [validSearch, setValidSearch] = useState("Search for a pokemon!");
+  const [firstRender, setFirstRender] = useState(true);
 
   useEffect(() => {
-    fetch(`https://pokeapi.co/api/v2/pokemon/${searchResult}`)
-      .then((response) => {
-        return response.json();
-      })
-      .then(({name, id, moves, height, weight, types, sprites : {front_default}}) => {
-        setPokemonInfo((currentState) =>{
-         const newObject =  {
-              name: name,
-              pokedexNumber : id,
-              moves : moves,
-              height : height,
-              weight : weight,
-              imageUrl : front_default
-         }
-        
-          if(types.length === 1){
-            newObject.types = [types[0].type.name]
-          } else {
-            newObject.types = [types[0].type.name, types[1].type.name]
-          }
-          return newObject;
+    if(firstRender === false){
+      fetch(`https://pokeapi.co/api/v2/pokemon/${searchResult.toLowerCase()}`)
+        .then((response) => {
+          if(response.status === 404){
+            // setFirstRender(false);
+            return Promise.reject("Pokemon not found")
+          } 
+          return response.json();
         })
-
-        setIsLoading(false);
-      });
+        .then(({name, id, moves, height, weight, types, sprites : {front_default}}) => {
+          setValidSearch("");
+          // setFirstRender(false);
+          setPokemonInfo((currentState) =>{
+           const newObject =  {
+                name: name,
+                pokedexNumber : id,
+                moves : moves,
+                height : height,
+                weight : weight,
+                imageUrl : front_default
+           }
+          
+            if(types.length === 1){
+              newObject.types = [types[0].type.name]
+            } else {
+              newObject.types = [types[0].type.name, types[1].type.name]
+            }
+            return newObject;
+          })
+  
+          setIsLoading(false);
+        }).catch((err) =>{
+          if(firstRender === false){
+            setValidSearch("Pokemon not found");
+          }
+        });
+    } else {
+      setFirstRender(false);
+      setIsLoading(false);
+    }
   }, [searchResult]);
-
-
-  if(isLoading){
-    return <p>...loading</p>
-  }
 
   return (
     <div id="shelf">
       <SearchBar setSearchResult={setSearchResult} />
-      <PokemonCard pokemonInfo={pokemonInfo}/>
+      <p>{validSearch}</p>
+      {isLoading ?  <p>... Loading</p> : pokemonInfo === null ? <></> : <PokemonCard pokemonInfo={pokemonInfo}/>}
     </div>
   );
 };
