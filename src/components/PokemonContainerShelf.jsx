@@ -28,6 +28,7 @@ const PokemonContainerShelf = () => {
             weight,
             types,
             sprites: { front_default },
+            stats,
           }) => {
             setValidSearch("");
             // setFirstRender(false);
@@ -39,6 +40,7 @@ const PokemonContainerShelf = () => {
                 height: height,
                 weight: weight,
                 imageUrl: front_default,
+                stats: stats,
               };
 
               if (types.length === 1) {

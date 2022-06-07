@@ -8,10 +8,13 @@ function PokemonCard({ pokemonInfo }) {
       <h3>Stats</h3>
       <ul className="list" id="stats">
         <li> height: {pokemonInfo.height * 10}cm </li>
-        <li> weight: {pokemonInfo.weight / 100}g </li>
+        <li> weight: {pokemonInfo.weight / 10}kg </li>
+        {pokemonInfo.stats.map((stat) =>{
+            return <li key={stat.stat.name}>{stat.stat.name}: {stat.base_stat}</li>
+        })}
       </ul>
       <h3>Types</h3>
-      <ul className="list" id="types">
+      <ul className={pokemonInfo.types.length === 1 ? "single" : "list"} id="types">
         {pokemonInfo.types.map((type) => {
           return <li key={type}>{type}</li>;
         })}
@@ -22,7 +25,7 @@ function PokemonCard({ pokemonInfo }) {
           .map((move) => {
             return <li key={move.move.name}>{move.move.name}</li>;
           })
-          .slice(0, 5)}
+          .slice(0, 6)}
       </ol>
     </section>
   );
