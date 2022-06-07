@@ -24,6 +24,7 @@
     1px 10px 1px #1c6ea4, 1px 18px 6px rgba(4, 5, 26, 0.4),
     1px 22px 10px rgba(4, 5, 26, 0.2), 1px 25px 35px rgba(4, 5, 26, 0.2),
     1px 30px 60px rgba(4, 5, 26, 0.4);
+  letter-spacing: 5px;
 }
 .search > input {
   font-family: "Press Start 2P", cursive;
@@ -67,9 +68,22 @@
   display: inline;
   position: relative;
   margin: 20px auto;
+  width: 10rem;
 }
 
-.list{
+.list {
   list-style: none;
-  border: 3px solid blue; 
+  border: 3px solid #21618b;
+  display: grid;
+  grid-template-columns: auto auto;
+  padding: 12px;
+  margin: 10px;
+  background-color: rgb(248, 233, 172);
+  justify-content: space-evenly;
+}
+
+li {
+  background-color: #73bae9;
+  padding: 5px;
+  margin: 5px;
 }

@@ -7,10 +7,10 @@ function PokemonCard({ pokemonInfo }) {
       <img id="card_img" src={pokemonInfo.imageUrl} alt={pokemonInfo.name} />
       <h3>Stats</h3>
       <ul className="list" id="stats">
-          <li> height: {pokemonInfo.height * 10}cm </li>
-          <li> weight: {pokemonInfo.weight / 100}g </li>
+        <li> height: {pokemonInfo.height * 10}cm </li>
+        <li> weight: {pokemonInfo.weight / 100}g </li>
       </ul>
-        <h3>Types</h3>
+      <h3>Types</h3>
       <ul className="list" id="types">
         {pokemonInfo.types.map((type) => {
           return <li key={type}>{type}</li>;
